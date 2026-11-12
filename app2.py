@@ -72,10 +72,10 @@ if st.button("計算実行"):
         phi = 0.0
 
     qb = phi * math.sqrt((s - 1.0) * g * (d50 ** 3))
-    ws = qb * B * 1e6 * rho_d * 60.0
+    ws = qb * B * 1e6 * rho_d 
 
     col1, col2 = st.columns(2)
-    col1.metric("目標給砂量", f"{ws:.1f} g/min")
+    col1.metric("目標給砂量", f"{ws:.2f} g/s")
     col2.metric("計算水深", f"{h * 100:.2f} cm")
 
     st.caption(
