@@ -36,7 +36,7 @@ with st.expander("詳細パラメータ・計算オプション設定"):
         "限界無次元掃流力 τc*（固定値選択時）",
         min_value=0.001, value=0.05, format="%.3f"
     )
-    rho_d = st.number_input("乾燥かさ密度 ρd [g/cm³]", min_value=0.1, value=1.55)
+    rho_d = st.number_input("乾燥かさ密度 ρd [g/cm³]", min_value=0.1, value=2.65)
     s     = st.number_input("砂の水中比重 s [-]", min_value=1.01, value=2.65)
 
 if st.button("計算実行"):
@@ -45,7 +45,8 @@ if st.button("計算実行"):
     B = B_cm / 100.0
     d50 = d50_mm / 1000.0
 
-    n = (d50 ** (1.0 / 6.0)) / 20.0
+    ks = 2.0 * d50
+    n = (ks ** (1.0 / 6.0)) / (7.66 * math.sqrt(g))
     h = ((n * (Q / B)) / math.sqrt(I)) ** 0.6
     U = Q / (B * h) if h > 0 else 0.0
 
